@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Image Slider</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <script>
+        $(document).ready(function() {
+            var sliderImages = $('.slider img');
+            var currentImage = 0;
+
+            // Show the first image
+            sliderImages.eq(currentImage).addClass('active');
+
+            // Next button click event
+            $('#next-button').on('click', function() {
+                sliderImages.eq(currentImage).removeClass('active');
+                currentImage = (currentImage + 1) % sliderImages.length;
+                sliderImages.eq(currentImage).addClass('active');
+            });
+
+            // Prev button click event
+            $('#prev-button').on('click', function() {
+                sliderImages.eq(currentImage).removeClass('active');
+                currentImage = (currentImage - 1 + sliderImages.length) % sliderImages.length;
+                sliderImages.eq(currentImage).addClass('active');
+            });
+        });
+    </script>
+
+    <div class="slider-container">
+        <div class="slider">
+            <img src="image1.jpg" alt="Image 1" class="active">
+            <img src="image2.jpg" alt="Image 2">
+            <img src="image3.jpg" alt="Image 3">
+        </div>
+        <button id="prev-button">Prev</button>
+        <button id="next-button">Next</button>
+    </div>
+
+    <script src="jquery.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
